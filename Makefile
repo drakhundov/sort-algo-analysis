@@ -1,7 +1,7 @@
 CC = clang++
 CFLAGS = -Wall -Werror -std=c++17 -Iinclude
 
-TARGET = build/bin/main
+TARGET = build/bin/sort-algo_analysis
 
 SRCS = $(wildcard src/*.cpp)
 
