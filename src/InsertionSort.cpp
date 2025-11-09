@@ -29,7 +29,7 @@ void insertionSort(std::vector<int> &v) {
       continue;
     }
     k = i;
-    while (v[k] < v[k - 1]) {
+    while (k > 0 && v[k] < v[k - 1]) {
       std::swap(v[k], v[k - 1]);
       k--;
     }
