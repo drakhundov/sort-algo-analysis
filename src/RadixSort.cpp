@@ -27,8 +27,8 @@ void radixSort(std::vector<int> &v, int ndigits) {
       ndigits += 1;
     }
   }
-  int maxExp = std::pow(10, ndigits);
-  for (int exp = 1; exp <= maxExp; exp *= 10) {
+  int maxExp = std::pow(10, ndigits - 1);
+  for (long exp = 1; exp <= maxExp; exp *= 10) {
     _countingSortWithExp(v, exp);
   }
 }
