@@ -8,7 +8,7 @@
 #include "exec_tm.h"
 #include "sorting.h"
 
-std::vector<int> sizes = {100, 1000, 10000, 100000, 1000000};
+std::vector<int> g_sizes = {100, 1000, 10000, 100000, 250000, 500000, 750000, 1000000};
 
 void create_g_sets(const std::vector<int>& sizes);
 const std::string& get_sort_str(Sorts sort_no);
@@ -32,15 +32,15 @@ int main(int argc, char** argv) {
     return 1;
   }
   ofs << "Algorithm,DatasetSize,ExecutionTime\n";
-  create_g_sets(sizes);
+  create_g_sets(g_sizes);
   std::cout << "Sets were created"
             << std::endl;
   int sz, i;
   Sorts sort_no;
   for (int s = 0; s < NSORTS; s++) {
     sort_no = static_cast<Sorts>(s);
-    for (i = 0; i < sizes.size(); i++) {
-      sz = sizes[i];
+    for (i = 0; i < g_sizes.size(); i++) {
+      sz = g_sizes[i];
       std::cout << "Starting "
                 << get_sort_str(sort_no) << " on set size "
                 << sz << std::endl;
@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
           countingSort(dataset, sz);
           break;
         case QUICK:
-          quickSort(dataset, 0, dataset.size() - 1);
+          quickSort(dataset, 0, sz);
           break;
         case SELECTION:
           selectionSort(dataset);
@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
           bubbleSort(dataset);
           break;
         case MERGE:
-          mergeSort(dataset, 0, dataset.size() - 1);
+          mergeSort(dataset, 0, sz);
           break;
         case RADIX:
           radixSort(dataset, sz);
@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
                 << sz << std::endl;
     }
   }
-  for (int i = 0; i < sizes.size(); i++) {
+  for (i = 0; i < g_sizes.size(); i++) {
     delete[] g_sets[i];
   }
   delete[] g_sets;
@@ -91,7 +91,7 @@ void create_g_sets(const std::vector<int>& sizes) {
   // Randomly generate datasets of various sizes.
   // ! Uses global variable 'g_sets'
   // ! Uses global macro NSORTS
-  int nsizes = sizes.size();
+  size_t nsizes = sizes.size();
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_int_distribution<int> distr(0, sizes[nsizes - 1]);
