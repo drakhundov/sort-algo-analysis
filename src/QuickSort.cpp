@@ -15,19 +15,51 @@
  *   Large datasets.
  */
 
-void quickSort(std::vector<int> &v, int left, int right) {
-  if (left >= right) {
-    return;
-  }
-  int mid = (left + right) / 2;
-  int last = left;
-  std::swap(v[left], v[mid]);
-  for (int i = left + 1; i <= right; i++) {
-    if (v[i] < v[left]) {
-      std::swap(v[++last], v[i]);
+void quickSortUnixImpl(std::vector<int> &v, int left, int right) {
+    if (left >= right) {
+        return;
     }
-  }
-  std::swap(v[left], v[last]);
-  quickSort(v, left, last - 1);
-  quickSort(v, last + 1, right);
+    int mid = (left + right) / 2;
+    int last = left;
+    std::swap(v[left], v[mid]);
+    for (int i = left + 1; i <= right; i++) {
+        if (v[i] < v[left]) {
+            std::swap(v[++last], v[i]);
+        }
+    }
+    std::swap(v[left], v[last]);
+    quickSortUnixImpl(v, left, last - 1);
+    quickSortUnixImpl(v, last + 1, right);
+}
+
+void quickSortTwoPointers(std::vector<int> &v, int left, int right) {
+    int partitionVectorWithPivot(std::vector<int> &, int, int);
+    if (left < right) {
+        int pivotIndex = partitionVectorWithPivot(v, left, right);
+        quickSortTwoPointers(v, left, pivotIndex - 1);
+        quickSortTwoPointers(v, pivotIndex + 1, right);
+    }
+}
+
+int partitionVectorWithPivot(std::vector<int> &v, int left, int right) {
+    int pivot = v[left];
+
+    int l = left + 1, r = right;
+    bool done = false;
+    while (!done) {
+        while (l <= r && v[l] <= pivot) {
+            l++;
+        }
+        while (v[r] >= pivot && r >= l) {
+            r--;
+        }
+
+        if (r < l) {
+            done = true;
+        } else {
+            std::swap(v[l], v[r]);
+        }
+    }
+    std::swap(v[left], v[r]);
+    return r;
 }

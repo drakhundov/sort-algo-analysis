@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
           countingSort(dataset, sz);
           break;
         case QUICK:
-          quickSort(dataset, 0, sz);
+          quickSortUnixImpl(dataset, 0, sz);
           break;
         case SELECTION:
           selectionSort(dataset);
