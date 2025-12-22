@@ -2,18 +2,21 @@
 
 #include <vector>
 
-void countingSort(std::vector<int> &, int);
+// Sort v given that all elements are <= max.
+void countingSort(std::vector<int> &v, int max);
 
-void radixSort(std::vector<int> &, int = -1);
+// Builds on top of counting sort. Applies counting sort per digit.
+// ndigits == -1 => compute automatically
+void radixSort(std::vector<int> &v, int ndigits = -1);
 
-void mergeSort(std::vector<int> &, int, int);
-void merge(std::vector<int> &, int, int, int);
+void mergeSort(std::vector<int> &v, int left, int right);
 
-void quickSortUnixImpl(std::vector<int> &, int, int);
+void quickSortUnixImpl(std::vector<int> &v, int left, int right);
+
 void quickSortTwoPointers(std::vector<int> &v, int left, int right);
 
-void selectionSort(std::vector<int> &);
+void selectionSort(std::vector<int> &v);
 
-void insertionSort(std::vector<int> &);
+void insertionSort(std::vector<int> &v);
 
-void bubbleSort(std::vector<int> &);
+void bubbleSort(std::vector<int> &v);
