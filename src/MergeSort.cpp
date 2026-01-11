@@ -34,7 +34,8 @@ void mergeSortWithBuffer(std::vector<int>& v, int left, int right) {
   }
 }
 
-// Since no buffer is allocated, merge is performed in O(n^2).
+// * Time Complexity: O(n^2)
+// * Space Complexity: O(1)
 void mergeInPlace(std::vector<int>& v, int left, int mid, int right) {
   // Left array: left, mid
   // Right array: mid + 1, right
@@ -59,6 +60,8 @@ void mergeInPlace(std::vector<int>& v, int left, int mid, int right) {
   }
 }
 
+// * Time Complexity: O(n)
+// * Space Complexity: O(n)
 void mergeWithBuffer(std::vector<int>& v, int left, int mid, int right) {
   std::vector<int> buf;
   int i = left, j = mid + 1;
