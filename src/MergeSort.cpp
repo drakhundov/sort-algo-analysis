@@ -69,7 +69,7 @@ void mergeWithBuffer(std::vector<int>& v, int left, int mid, int right) {
       buf.push_back(v[j++]);
     }
   }
-  while (i <= mid) buf.push_back(v[i]);
-  while (j <= right) buf.push_back(v[j]);
+  while (i <= mid) buf.push_back(v[i++]);
+  while (j <= right) buf.push_back(v[j++]);
   std::copy(buf.begin(), buf.end(), v.begin() + left);
 }
