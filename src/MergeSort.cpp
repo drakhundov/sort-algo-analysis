@@ -14,17 +14,28 @@
  ! Avoid using on small arrays.
  */
 
-void mergeSort(std::vector<int> &v, int left, int right) {
-  void merge(std::vector<int> &, int, int, int);
+void mergeSortInPlace(std::vector<int>& v, int left, int right) {
+  void mergeInPlace(std::vector<int>&, int, int, int);
   if (left < right) {
     int mid = (left + right) / 2;
-    mergeSort(v, left, mid);
-    mergeSort(v, mid + 1, right);
-    merge(v, left, mid, right);
+    mergeSortInPlace(v, left, mid);
+    mergeSortInPlace(v, mid + 1, right);
+    mergeInPlace(v, left, mid, right);
   }
 }
 
-void merge(std::vector<int> &v, int left, int mid, int right) {
+void mergeSortWithBuffer(std::vector<int>& v, int left, int right) {
+  void mergeWithBuffer(std::vector<int>&, int, int, int);
+  if (left < right) {
+    int mid = (left + right) / 2;
+    mergeSortWithBuffer(v, left, mid);
+    mergeSortWithBuffer(v, mid + 1, right);
+    mergeWithBuffer(v, left, mid, right);
+  }
+}
+
+// Since no buffer is allocated, merge is performed in O(n^2).
+void mergeInPlace(std::vector<int>& v, int left, int mid, int right) {
   // Left array: left, mid
   // Right array: mid + 1, right
   int i, j, k, tmp;
@@ -46,4 +57,19 @@ void merge(std::vector<int> &v, int left, int mid, int right) {
       mid++;
     }
   }
+}
+
+void mergeWithBuffer(std::vector<int>& v, int left, int mid, int right) {
+  std::vector<int> buf;
+  int i = left, j = mid + 1;
+  while (i <= mid && j <= right) {
+    if (v[i] <= v[j]) {
+      buf.push_back(v[i++]);
+    } else {
+      buf.push_back(v[j++]);
+    }
+  }
+  while (i <= mid) buf.push_back(v[i]);
+  while (j <= right) buf.push_back(v[j]);
+  std::copy(buf.begin(), buf.end(), v.begin() + left);
 }
