@@ -53,7 +53,7 @@ int main(int argc, char **argv) {
                     countingSort(dataset, sz);
                     break;
                 case QUICK:
-                    quickSortUnixImpl(dataset, 0, sz);
+                    quickSortUnixImpl(dataset, 0, sz - 1);
                     break;
                 case SELECTION:
                     selectionSort(dataset);
@@ -65,7 +65,7 @@ int main(int argc, char **argv) {
                     bubbleSort(dataset);
                     break;
                 case MERGE:
-                    mergeSort(dataset, 0, sz);
+                    mergeSort(dataset, 0, sz - 1);
                     break;
                 case RADIX:
                     radixSort(dataset, sz);
