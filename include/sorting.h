@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <functional>
 
 void mergeSortInPlace(std::vector<int>& v, int left, int right);
 
@@ -25,4 +26,5 @@ void countingSort(std::vector<int>& v, int max);
 // ndigits == -1 => compute automatically
 void radixSort(std::vector<int>& v, int ndigits = -1);
 
-void bucketSort(std::vector<int>& v, int max, int nbuckets = 10);
+void bucketSort(std::vector<int>& v, int max,
+                const std::function<int(int)>& calc_nbuckets);

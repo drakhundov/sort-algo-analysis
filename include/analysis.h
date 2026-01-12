@@ -10,18 +10,14 @@ enum Sorts {
   QUICK = 3,
   BUBBLE = 4,
   COUNTING = 5,
-  RADIX = 6
+  RADIX = 6,
+  BUCKET = 7
 };
 
 inline std::map<Sorts, std::string> sort_str_map = {
-  {SELECTION, "SELECTION"},
-  {INSERTION, "INSERTION"},
-  {MERGE, "MERGE"},
-  {QUICK, "QUICK"},
-  {BUBBLE, "BUBBLE"},
-  {COUNTING, "COUNTING"},
-  {RADIX, "RADIX"},
-};
+    {SELECTION, "SELECTION"}, {INSERTION, "INSERTION"}, {MERGE, "MERGE"},
+    {QUICK, "QUICK"},         {BUBBLE, "BUBBLE"},       {COUNTING, "COUNTING"},
+    {RADIX, "RADIX"},         {BUCKET, "BUCKET"}};
 
 // Bubble
 // Selection
@@ -30,4 +26,6 @@ inline std::map<Sorts, std::string> sort_str_map = {
 // Insertion
 // Counting
 // Radix
-#define NSORTS 7
+#define NSORTS sort_str_map.size()
+
+const std::string& get_sort_str(Sorts sort_no);
