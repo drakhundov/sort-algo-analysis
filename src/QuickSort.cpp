@@ -34,7 +34,7 @@ void quickSortUnixImpl(std::vector<int>& v, int left, int right) {
 
 void quickSortTwoPointers(std::vector<int>& v, int left, int right) {
   if (left < right) {
-    int pivot = v[left], pivotIndex;
+    int pivot = v[left];
 
     int l = left + 1, r = right;
     bool done = false;
@@ -53,8 +53,7 @@ void quickSortTwoPointers(std::vector<int>& v, int left, int right) {
       }
     }
     std::swap(v[left], v[r]);
-    pivotIndex = r;
-    quickSortTwoPointers(v, left, pivotIndex - 1);
-    quickSortTwoPointers(v, pivotIndex + 1, right);
+    quickSortTwoPointers(v, left, r - 1);
+    quickSortTwoPointers(v, r + 1, right);
   }
 }
